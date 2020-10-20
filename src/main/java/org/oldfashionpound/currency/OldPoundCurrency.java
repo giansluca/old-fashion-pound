@@ -17,10 +17,6 @@ public class OldPoundCurrency {
         normalize();
     }
 
-    public String getAmount() {
-        return String.format("%dp %ds %dd", pounds, shillings, pence);
-    }
-
     private void normalize() {
         shillings += pence / PENCE_IN_SHILLING;
         pence = pence % PENCE_IN_SHILLING;
@@ -74,20 +70,25 @@ public class OldPoundCurrency {
         pence /= value;
     }
 
-    public String getFormattedReminder() {
-        if (penceDivisionRemainder == 0) return "()";
+    public String getFormattedCurrency() {
+        return String.format("%dp %ds %dd", pounds, shillings, pence);
+    }
 
+    public String getFormattedReminder() {
+        if (penceDivisionRemainder == 0) return null;
+
+        int reminder = penceDivisionRemainder;
         StringBuilder builder = new StringBuilder();
         builder.append("(");
 
-        if (penceDivisionRemainder > PENCE_IN_SHILLING) {
-            int s = penceDivisionRemainder / PENCE_IN_SHILLING;
-            penceDivisionRemainder %= PENCE_IN_SHILLING;
+        if (reminder > PENCE_IN_SHILLING) {
+            int s = reminder / PENCE_IN_SHILLING;
+            reminder %= PENCE_IN_SHILLING;
             builder.append(String.format("%ds ", s));
         }
 
-        if (penceDivisionRemainder > 0)
-            builder.append(String.format("%dd", penceDivisionRemainder));
+        if (reminder > 0)
+            builder.append(String.format("%dd", reminder));
 
         builder.append(")");
         return builder.toString();

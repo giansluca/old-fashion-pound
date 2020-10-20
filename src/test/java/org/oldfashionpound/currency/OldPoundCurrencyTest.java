@@ -22,7 +22,7 @@ class OldPoundCurrencyTest {
         underTest = new OldPoundCurrency(pounds, shillings, pence);
 
         // Then
-        assertThat(underTest.getAmount()).isEqualTo(expected);
+        assertThat(underTest.getFormattedCurrency()).isEqualTo(expected);
     }
 
     @ParameterizedTest
@@ -43,7 +43,7 @@ class OldPoundCurrencyTest {
         underTest = new OldPoundCurrency(pounds, shillings, testPence);
 
         // Then
-        assertThat(underTest.getAmount()).isEqualTo(expected);
+        assertThat(underTest.getFormattedCurrency()).isEqualTo(expected);
     }
 
     @ParameterizedTest
@@ -61,7 +61,7 @@ class OldPoundCurrencyTest {
         underTest = new OldPoundCurrency(pounds, testShillings, pence);
 
         // Then
-        assertThat(underTest.getAmount()).isEqualTo(expected);
+        assertThat(underTest.getFormattedCurrency()).isEqualTo(expected);
     }
 
     @ParameterizedTest
@@ -77,19 +77,19 @@ class OldPoundCurrencyTest {
         underTest = new OldPoundCurrency(pounds, testShillings, testPence);
 
         // Then
-        assertThat(underTest.getAmount()).isEqualTo(expected);
+        assertThat(underTest.getFormattedCurrency()).isEqualTo(expected);
     }
 
     @Test
     void isShouldAdd() {
         // Given
-        OldPoundCurrency currency = new OldPoundCurrency(5, 17, 8);
+        underTest = new OldPoundCurrency(5, 17, 8);
         OldPoundCurrency amountToAdd = new OldPoundCurrency(3, 4, 10);
         String expected = "9p 2s 6d";
 
         // When
-        currency.add(amountToAdd);
-        String result = currency.getAmount();
+        underTest.add(amountToAdd);
+        String result = underTest.getFormattedCurrency();
 
         // Then
         assertThat(result).isEqualTo(expected);
@@ -104,12 +104,12 @@ class OldPoundCurrencyTest {
     })
     void isShouldSubtract(int pounds, int shillings, int pence, String expected) {
         // Given
-        OldPoundCurrency currency = new OldPoundCurrency(5, 17, 8);
+        underTest = new OldPoundCurrency(5, 17, 8);
         OldPoundCurrency amountToSubtract = new OldPoundCurrency(pounds, shillings, pence);
 
         // When
-        currency.subtract(amountToSubtract);
-        String result = currency.getAmount();
+        underTest.subtract(amountToSubtract);
+        String result = underTest.getFormattedCurrency();
 
         // Then
         assertThat(result).isEqualTo(expected);
@@ -122,11 +122,11 @@ class OldPoundCurrencyTest {
     })
     void isShouldMultiply(int pounds, int shillings, int pence, int value, String expected) {
         // Given
-        OldPoundCurrency currency = new OldPoundCurrency(pounds, shillings, pence);
+        underTest = new OldPoundCurrency(pounds, shillings, pence);
 
         // When
-        currency.multiply(value);
-        String result = currency.getAmount();
+        underTest.multiply(value);
+        String result = underTest.getFormattedCurrency();
 
         // Then
         assertThat(result).isEqualTo(expected);
@@ -136,18 +136,18 @@ class OldPoundCurrencyTest {
     @CsvSource({
             "5, 17, 8, 3, 1p 19s 2d, (2d)",
             "18, 16, 1, 15, 1p 5s 0d, (1s 1d)",
-            "10, 8, 6, 2, 5p 4s 3d, ()"
+            "10, 8, 6, 2, 5p 4s 3d,"
     })
     void isShouldDivide(
             int pounds, int shillings, int pence, int value, String expected, String reminder) {
 
         // Given
-        OldPoundCurrency currency = new OldPoundCurrency(pounds, shillings, pence);
+        underTest = new OldPoundCurrency(pounds, shillings, pence);
 
         // When
-        currency.divide(value);
-        String result = currency.getAmount();
-        String reminderResult = currency.getFormattedReminder();
+        underTest.divide(value);
+        String result = underTest.getFormattedCurrency();
+        String reminderResult = underTest.getFormattedReminder();
 
         // Then
         assertThat(result).isEqualTo(expected);
