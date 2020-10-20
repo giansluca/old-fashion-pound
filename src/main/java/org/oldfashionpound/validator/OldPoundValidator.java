@@ -1,4 +1,4 @@
-package org.oldfashionpound;
+package org.oldfashionpound.validator;
 
 import java.util.*;
 import java.util.stream.Stream;

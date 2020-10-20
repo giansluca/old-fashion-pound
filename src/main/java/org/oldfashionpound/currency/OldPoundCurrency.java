@@ -1,12 +1,11 @@
-package org.oldfashionpound;
+package org.oldfashionpound.currency;
 
 public class OldPoundCurrency {
 
     private static final int SHILLINGS_IN_POUND = 20;
     private static final int PENCE_IN_SHILLING = 12;
-    private static final int PENCE_IN_POUND = 240;
 
-    private int divisionRemainder;
+    private int penceDivisionRemainder;
     private int pounds;
     private int shillings;
     private int pence;
@@ -51,7 +50,6 @@ public class OldPoundCurrency {
         shillings -= amountToSubtract.getShillings();
 
         pounds -= amountToSubtract.getPounds();
-        normalize();
     }
 
     public void multiply(int value) {
@@ -72,30 +70,24 @@ public class OldPoundCurrency {
         if (shillingsRemainder > 0)
             pence += shillingsRemainder * PENCE_IN_SHILLING;
 
-        divisionRemainder = pence % value;
+        penceDivisionRemainder = pence % value;
         pence /= value;
     }
 
     public String getFormattedReminder() {
-        if (divisionRemainder == 0) return null;
+        if (penceDivisionRemainder == 0) return "()";
 
         StringBuilder builder = new StringBuilder();
         builder.append("(");
 
-        if (divisionRemainder > PENCE_IN_POUND) {
-            int p = divisionRemainder / PENCE_IN_POUND;
-            divisionRemainder = divisionRemainder % PENCE_IN_POUND;
-            builder.append(String.format("%dp ", p));
-        }
-
-        if (divisionRemainder > PENCE_IN_SHILLING) {
-            int s = divisionRemainder / PENCE_IN_SHILLING;
-            divisionRemainder = divisionRemainder % PENCE_IN_SHILLING;
+        if (penceDivisionRemainder > PENCE_IN_SHILLING) {
+            int s = penceDivisionRemainder / PENCE_IN_SHILLING;
+            penceDivisionRemainder %= PENCE_IN_SHILLING;
             builder.append(String.format("%ds ", s));
         }
 
-        if (divisionRemainder > 0)
-            builder.append(String.format("%dd", divisionRemainder));
+        if (penceDivisionRemainder > 0)
+            builder.append(String.format("%dd", penceDivisionRemainder));
 
         builder.append(")");
         return builder.toString();

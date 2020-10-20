@@ -1,4 +1,4 @@
-package org.oldfashionpound;
+package org.oldfashionpound.validator;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

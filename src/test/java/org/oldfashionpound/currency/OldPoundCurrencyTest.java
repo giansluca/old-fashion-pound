@@ -1,4 +1,4 @@
-package org.oldfashionpound;
+package org.oldfashionpound.currency;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -99,7 +99,8 @@ class OldPoundCurrencyTest {
     @CsvSource({
             "3, 4, 10, 2p 12s 10d",
             "3, 4, 31, 2p 11s 1d",
-            "3, 19, 12, 1p 17s 8d"
+            "3, 19, 12, 1p 17s 8d",
+            "3, 18, 5, 1p 19s 3d"
     })
     void isShouldSubtract(int pounds, int shillings, int pence, String expected) {
         // Given
@@ -135,6 +136,7 @@ class OldPoundCurrencyTest {
     @CsvSource({
             "5, 17, 8, 3, 1p 19s 2d, (2d)",
             "18, 16, 1, 15, 1p 5s 0d, (1s 1d)",
+            "10, 8, 6, 2, 5p 4s 3d, ()"
     })
     void isShouldDivide(
             int pounds, int shillings, int pence, int value, String expected, String reminder) {

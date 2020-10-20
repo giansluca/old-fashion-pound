@@ -1,7 +1,9 @@
-package org.oldfashionpound;
+package org.oldfashionpound.parser;
 
 import org.junit.jupiter.api.*;
 import org.mockito.*;
+import org.oldfashionpound.validator.OldPoundValidator;
+import org.oldfashionpound.currency.OldPoundCurrency;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.doNothing;

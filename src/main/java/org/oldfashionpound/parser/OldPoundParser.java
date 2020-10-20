@@ -1,4 +1,7 @@
-package org.oldfashionpound;
+package org.oldfashionpound.parser;
+
+import org.oldfashionpound.validator.OldPoundValidator;
+import org.oldfashionpound.currency.OldPoundCurrency;
 
 import java.util.Map;
 import java.util.stream.*;
