@@ -25,7 +25,7 @@ class OldPoundParserTest {
         // Given
         String currency = "10p 20s 30d";
         OldPoundCurrency expected = new OldPoundCurrency(11, 2, 6);
-        doNothing().when(oldPoundValidator).validateCurrencyString();
+        doNothing().when(oldPoundValidator).validateCurrencyString(currency);
 
         underTest = new OldPoundParser(oldPoundValidator, currency);
 

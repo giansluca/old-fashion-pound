@@ -11,13 +11,10 @@ public class OldPoundValidator {
     private static final int LETTER_NUMBER = 1;
     private static final int SPACE_NUMBER = 2;
 
-    private final String currency;
+    private String currency;
 
-    public OldPoundValidator(String currency) {
+    public void validateCurrencyString(String currency) {
         this.currency = currency;
-    }
-
-    public void validateCurrencyString() {
         checkEmptyOrNull();
         validateAllowedCharacters();
         validateSymbolsQuantity();

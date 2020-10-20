@@ -14,22 +14,22 @@ class OldPoundValidatorTest {
     void isShouldPassTheValidation() {
         // Given
         String currency = "1p 1s 1d";
-        underTest = new OldPoundValidator(currency);
+        underTest = new OldPoundValidator();
 
         // When
         // Then
-        underTest.validateCurrencyString();
+        underTest.validateCurrencyString(currency);
     }
 
     @Test
     void isShouldThrowIfCurrencyIsEmpty() {
         // Given
         String currency = "";
-        underTest = new OldPoundValidator(currency);
+        underTest = new OldPoundValidator();
 
         // When
         // Then
-        assertThatThrownBy(()-> underTest.validateCurrencyString())
+        assertThatThrownBy(()-> underTest.validateCurrencyString(currency))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("currency cannot be null or empty");
     }
@@ -38,11 +38,11 @@ class OldPoundValidatorTest {
     void isShouldThrowIfCurrencyIsBlank() {
         // Given
         String currency = "      ";
-        underTest = new OldPoundValidator(currency);
+        underTest = new OldPoundValidator();
 
         // When
         // Then
-        assertThatThrownBy(()-> underTest.validateCurrencyString())
+        assertThatThrownBy(()-> underTest.validateCurrencyString(currency))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("currency cannot be null or empty");
     }
@@ -51,11 +51,11 @@ class OldPoundValidatorTest {
     void isShouldThrowIfCurrencyIsNull() {
         // Given
         String currency = null;
-        underTest = new OldPoundValidator(currency);
+        underTest = new OldPoundValidator();
 
         // When
         // Then
-        assertThatThrownBy(()-> underTest.validateCurrencyString())
+        assertThatThrownBy(()-> underTest.validateCurrencyString(currency))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("currency cannot be null or empty");
     }
@@ -64,11 +64,11 @@ class OldPoundValidatorTest {
     void isShouldThrowIfCurrencyContainsNotAllowedCharacters() {
         // Given
         String currency = "1p 1s 1z";
-        underTest = new OldPoundValidator(currency);
+        underTest = new OldPoundValidator();
 
         // When
         // Then
-        assertThatThrownBy(()-> underTest.validateCurrencyString())
+        assertThatThrownBy(()-> underTest.validateCurrencyString(currency))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("1p 1s 1z contains invalid character z");
     }
@@ -84,11 +84,11 @@ class OldPoundValidatorTest {
     })
     void isShouldThrowIfCurrencyIsInTheWrongFormat(String currency) {
         // Given
-        underTest = new OldPoundValidator(currency);
+        underTest = new OldPoundValidator();
 
         // When
         // Then
-        assertThatThrownBy(()-> underTest.validateCurrencyString())
+        assertThatThrownBy(()-> underTest.validateCurrencyString(currency))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(currency + " is in the wrong format");
     }
@@ -101,11 +101,11 @@ class OldPoundValidatorTest {
     })
     void isShouldThrowIfSymbolsAreNotInTheCorrectPosition(String currency) {
         // Given
-        underTest = new OldPoundValidator(currency);
+        underTest = new OldPoundValidator();
 
         // When
         // Then
-        assertThatThrownBy(() -> underTest.validateCurrencyString())
+        assertThatThrownBy(() -> underTest.validateCurrencyString(currency))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(currency + " currency value is not correct");
     }

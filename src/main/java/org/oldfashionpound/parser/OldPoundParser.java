@@ -12,12 +12,11 @@ public class OldPoundParser {
     private static final String SHILLINGS = "s";
     private static final String PENCE= "d";
 
-    private final OldPoundValidator oldPoundValidator;
-    private final String currency;
+    private OldPoundValidator oldPoundValidator;
+    private String currency;
 
-    public OldPoundParser(String currency) {
-        this.currency = currency;
-        this.oldPoundValidator = new OldPoundValidator(currency);
+    public OldPoundParser() {
+        this.oldPoundValidator = new OldPoundValidator();
     }
 
     public OldPoundParser(OldPoundValidator oldPoundValidator, String currency) {
@@ -25,8 +24,13 @@ public class OldPoundParser {
         this.currency = currency;
     }
 
+    public OldPoundCurrency parseCurrencyString(String currency) {
+        this.currency = currency;
+        return parseCurrencyString();
+    }
+
     public OldPoundCurrency parseCurrencyString() {
-        oldPoundValidator.validateCurrencyString();
+        oldPoundValidator.validateCurrencyString(currency);
 
         Map<String, Integer> currencyMap = Stream.of(currency.split(" "))
                 .collect(Collectors.toMap(
