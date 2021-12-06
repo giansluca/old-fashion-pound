@@ -1,7 +1,7 @@
 
 Usage examples :
 
-
+``
         OldPoundCalculator oldPoundCalculator = new OldPoundCalculator();
 		
         String addResult = oldPoundCalculator.add("5p 17s 8d", "3p 4s 10d");
