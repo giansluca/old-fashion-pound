@@ -12,7 +12,7 @@ public class OldPoundParser {
     private static final String SHILLINGS = "s";
     private static final String PENCE= "d";
 
-    private OldPoundValidator oldPoundValidator;
+    private final OldPoundValidator oldPoundValidator;
     private String currency;
 
     public OldPoundParser() {

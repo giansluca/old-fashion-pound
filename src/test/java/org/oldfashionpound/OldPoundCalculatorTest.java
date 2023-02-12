@@ -54,8 +54,7 @@ class OldPoundCalculatorTest {
             "2p 8s 12d, 3, 7p 7s 0d",
     })
     void isShouldMultiplyCurrencies(String initialCurrency, int value, String expected) {
-        // Given
-        // When
+        // Given - When
         String result = underTest.multiply(initialCurrency, value);
 
         // Then
@@ -69,8 +68,7 @@ class OldPoundCalculatorTest {
             "10p 8s 6d, 2, 5p 4s 3d"
     })
     void isShouldDivideCurrencies(String initialCurrency, int value, String expected) {
-        // Given
-        // When
+        // Given - When
         String result = underTest.divide(initialCurrency, value);
 
         // Then

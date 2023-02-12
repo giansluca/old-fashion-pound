@@ -4,13 +4,12 @@ import org.oldfashionpound.parser.OldPoundParser;
 
 /**
  * Old Pound Calculator class
- *
  * All input currencies strings must be it the the format: 'Xp Ys Zd'
  * Example add method: add("5p 17s 8d", "3p 4s 10d");
  */
 public class OldPoundCalculator {
 
-    private OldPoundParser oldPoundParser;
+    private final OldPoundParser oldPoundParser;
 
     public OldPoundCalculator() {
         oldPoundParser = new OldPoundParser();
